@@ -1,0 +1,35 @@
+{% extends "nav.html" %}
+
+{% block title %}Rent History List{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Rent History List</h2>
+<a href="{% url 'rent_history_create' %}" class="btn btn-primary mb-3">Add New Rent History</a>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Hosteller</th>
+                <th>Payment Method</th>
+                <th>Payer Phone Number</th>
+                <th>Payment Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in histories %}
+                <tr>
+                    <td>{{ history.hosteller.full_name }}</td>
+                    <td>{{ history.payment_method }}</td>
+                    <td>{{ history.payer_phone_number }}</td>
+                    <td>{{ history.payment_date }}</td>
+                    <td>
+                        <a href="{% url 'rent_history_update' history.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'rent_history_delete' history.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

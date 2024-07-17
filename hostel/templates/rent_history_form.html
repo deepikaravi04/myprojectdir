@@ -1,0 +1,27 @@
+{% extends "nav.html" %}
+
+{% block title %}{{ form.instance.pk|yesno:"Update Rent History,Create Rent History" }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ form.instance.pk|yesno:"Update Rent History,Create Rent History" }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.hosteller.label_tag }}
+        {{ form.hosteller }}
+    </div>
+    <div class="form-group">
+        {{ form.payment_method.label_tag }}
+        {{ form.payment_method }}
+    </div>
+    <div class="form-group">
+        {{ form.payer_phone_number.label_tag }}
+        {{ form.payer_phone_number }}
+    </div>
+    <div class="form-group">
+        {{ form.payment_date.label_tag }}
+        {{ form.payment_date }}
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

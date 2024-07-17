@@ -1,0 +1,35 @@
+{% extends "nav.html" %}
+
+{% block title %}Room Details List{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Room Details List</h2>
+<a href="{% url 'room_details_create' %}" class="btn btn-primary mb-3">Add New Room</a>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Hostel Number</th>
+                <th>Floor Number</th>
+                <th>Room Number</th>
+                <th>Bed Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.hostel_number }}</td>
+                    <td>{{ room.floor_number }}</td>
+                    <td>{{ room.room_no }}</td>
+                    <td>{{ room.bed_number }}</td>
+                    <td>
+                        <a href="{% url 'room_details_update' room.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'room_details_delete' room.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "nav.html" %}
+
+{% block title %}Hosteller List{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Hosteller List</h2>
+<a href="{% url 'hosteller_create' %}" class="btn btn-primary mb-3">Add New Hosteller</a>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Joint Fee</th>
+                <th>Advance Amount</th>
+                <th>Rent Amount</th>
+                <th>Phone Number</th>
+                <th>Join Date</th>
+                <th>Is Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hosteller in hostellers %}
+                <tr>
+                    <td>{{ hosteller.full_name }}</td>
+                    <td>{{ hosteller.joint_fee }}</td>
+                    <td>{{ hosteller.advance_amount }}</td>
+                    <td>{{ hosteller.rent_amount }}</td>
+                    <td>{{ hosteller.phone_number }}</td>
+                    <td>{{ hosteller.join_date }}</td>
+                    <td>{{ hosteller.is_active|yesno:"Yes,No" }}</td>
+                    <td>
+                        <a href="{% url 'hosteller_update' hosteller.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'hosteller_delete' hosteller.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

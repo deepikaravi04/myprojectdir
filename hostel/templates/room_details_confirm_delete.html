@@ -1,0 +1,12 @@
+{% extends "nav.html" %}
+
+{% block title %}Delete Room{% endblock %}
+
+{% block content %}
+<h2>Are you sure you want to delete this room?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="{% url 'room_details_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
